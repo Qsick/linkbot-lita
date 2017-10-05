@@ -1,0 +1,16 @@
+[Unit]
+Description=Lita instance
+Requires=docker.service redis.service
+After=docker.service redis.service
+
+[Service]
+TimeoutStartSec=0
+Restart=always
+ExecStartPre=-/usr/bin/docker kill lita
+ExecStartPre=-/usr/bin/docker rm lita
+ExecStart=/usr/bin/docker run --name lita --link redis:redis -v /var/lita/app:/app lita
+ExecStop=/usr/bin/docker stop lita
+
+[Install]
+WantedBy=multi-user.target
+

@@ -1,0 +1,17 @@
+[Unit]
+Description=The Redis data structure server
+Requires=docker.service
+After=docker.service
+
+[Service]
+TimeoutStartSec=0
+Restart=always
+ExecStartPre=-/usr/bin/docker kill redis
+ExecStartPre=-/usr/bin/docker rm redis
+ExecStartPre=/usr/bin/docker pull litaio/redis
+ExecStart=/usr/bin/docker run --name redis -v /var/lib/redis:/var/lib/redis litaio/redis
+ExecStop=/usr/bin/docker stop redis
+
+[Install]
+WantedBy=multi-user.target
+

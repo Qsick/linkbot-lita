@@ -1,0 +1,14 @@
+version: '3'
+services:
+  redis:
+    image: litaio/redis
+    container_name: redis
+  lita:
+    build: ./
+    image: lita
+    container_name: lita
+    depends_on:
+      - 'redis'
+    volumes:
+      - ~/code/linkbot-lita/app:/app
+

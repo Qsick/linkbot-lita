@@ -1,0 +1,10 @@
+source "https://rubygems.org"
+
+gem "lita"
+
+gem "lita-slack"
+gem "image_size"
+gem "hpricot"
+
+gem "lita-image", :path => "/app/local_plugins/lita-image"
+gem "lita-chat", :path => "/app/local_plugins/lita-chat"
